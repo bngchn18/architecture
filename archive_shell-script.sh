@@ -36,6 +36,9 @@ if [ "$USE_PERCENT" -gt "$PERCENT" ]; then
   TEMP_DIR=$(mktemp -d /tmp/archive_limit.XXXXXX)
 
   mount -t tmpfs -o size=2G tmpfs "$TEMP_DIR"
+  
+  TEMP_SIZE=$(df -h $TEMP_DIR | awk '(NR==2){print (NF-4)}')	
+  echo "Size of temporary directory "$TEMP_SIZE"G"
 
   # Поиск и архивирование старых файлов
   OLD_FILES=$(find . -type f -printf "%T@ %p\n" | sort -n | head -n "$COUNT" | cut -d' ' -f2-)
