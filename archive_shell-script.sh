@@ -35,6 +35,8 @@ if [ "$USE_PERCENT" -gt "$PERCENT" ]; then
   # Создание временной папки для архивации
   TEMP_DIR=$(mktemp -d /tmp/archive_limit.XXXXXX)
 
+  mount -t tmpfs -o size=2G tmpfs "$TEMP_DIR"
+
   # Поиск и архивирование старых файлов
   OLD_FILES=$(find . -type f -printf "%T@ %p\n" | sort -n | head -n "$COUNT" | cut -d' ' -f2-)
 
