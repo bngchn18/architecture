@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Путь к скрипту
-SCRIPT_PATH="./archive_script.sh"
+SCRIPT_PATH="./archive_shell-script.sh"
 
 # Функция для тестирования
 run_test() {
